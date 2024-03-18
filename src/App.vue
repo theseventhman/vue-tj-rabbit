@@ -1,27 +1,23 @@
 <script setup>
-  // 1. 导入函数
-  // import {reactive} from 'vue'
+ // 原始响应式数据
+ import {ref} from 'vue'
+ // 1. 导入computed
+ import {computed} from 'vue'
+ const list = ref([1,2,3,4,5,6,7,8])
+ // 2. 执行函数 return计算之后的值 变量函数
+ const computedLst = computed(() =>{
+   return list.value.filter(item => item >2)
+ })
 
-  // // 2. 执行函数 传入一个对象类型的参数 变量接收
-  // const state = reactive({
-  //   count : 0
-  // })
-
-  // const setCount = () =>{
-  //   state.count++
-  // }
-  // 1.导入函数
-   import {ref} from 'vue'
-   // 2. 执行函数 传入参数[简单类型 + 对象类型] 变量接收
-   const count = ref(0)
-   console.log(count)
-   const setCount = () =>{
-     // 脚本区域修改ref产生的响应式对象数据 必须通过.value属性
-     count.value++
-   }
+ setTimeout(() => {
+   list.value.push(9,10)
+ }, 3000);
   </script>
 <template>
   <div>
-    <button @click="setCount">{{count}}</button>
+   原始响应式数据 - {{list}}
+  </div>
+  <div>
+    计算属性数组 - {{computedLst}}
   </div>
 </template>
