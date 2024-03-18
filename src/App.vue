@@ -1,73 +1,30 @@
-<!-- <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
-<template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it too!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
-</template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+<!-- <script>
+export default {
+  setup() {
+    console.log('setup')
+    const message = 'this is message'
+    const logMessage = () => {
+      console.log(message);
+    }
+    return {
+      message,
+      logMessage
+    }
+  },
+  beforeCreate () {
+    console.log('beforeCreate')
   }
 }
-</style> -->
-
-<template>
-  <button @click="addCount">{{count}}</button>
-</template>
-<!-- 开关: 容许在script书写组合式API-->
+</script> -->
 <script setup>
-  // Vue3 组合式 api实现
-  import { ref } from 'vue'
-  const count = ref(0);
-  const addCount = () => count.value++
-  // Vue2的代码
-  // export default {
-  //   data() {
-  //     return {
-  //       count: 0
-  //     }
-  //   },
-  //   methods :{
-  //     addCount (){
-  //       this.count++;
-  //     }
-  //   }
-  // }
+  const message = 'this is message';
+  const logMessage = () =>{
+    console.log(message)
+  }
 </script>
 
-
+<template>
+  <div>{{message}}
+    <button @click="logMessage">log</button>
+  </div>
+</template>
