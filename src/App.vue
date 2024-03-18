@@ -1,23 +1,74 @@
-<script setup>
- // 原始响应式数据
- import {ref} from 'vue'
- // 1. 导入computed
- import {computed} from 'vue'
- const list = ref([1,2,3,4,5,6,7,8])
- // 2. 执行函数 return计算之后的值 变量函数
- const computedLst = computed(() =>{
-   return list.value.filter(item => item >2)
- })
+<!-- <script setup>
+ import {ref,watch} from 'vue'
+ const count = ref(0)
+ const setCount = () =>{
+   count.value++
+ }
 
- setTimeout(() => {
-   list.value.push(9,10)
- }, 3000);
+ // watch侦听单个数据源
+ // ref对象不需要加.value
+ watch(count,(newVal,oldVal) =>{
+   console.log('count变化了',newVal,oldVal)
+ })
   </script>
 <template>
   <div>
-   原始响应式数据 - {{list}}
+   <button @click="setCount">+{{count}}</button>
+  </div>
+</template> -->
+<!-- <script setup>
+  //侦听多个数据变化
+  import {ref,watch} from 'vue'
+
+  const count = ref(0)
+  const changeCount = () =>{
+    count.value++
+  }
+
+  const name = ref('cp')
+  const changeName = () =>{
+    name.value='pc'
+  }
+
+  // watch侦听多个数据源
+  watch(
+    [count,name],
+    (
+      [newCount,newName],
+      [oldCount,oldName]
+    ) =>{
+      console.log('count或者name变化了',[newCount,newName],
+      [oldCount,oldName])
+    })
+</script> 
+
+<template>
+  <div>
+    <button @click="changeCount">修改count--{{count}}</button>
   </div>
   <div>
-    计算属性数组 - {{computedLst}}
+    <button @click="changeName">修改name--</button>
+  </div>
+</template>
+-->
+<script setup>
+  //立即执行immediate
+  import { ref,watch} from 'vue'
+  const count = ref(0)
+
+  const setCount = () =>{
+  count.value++
+  }
+
+  // watch 立即执行
+  watch(count,() =>{
+    console.log("count变化了")
+  },{
+    immediate : true
+  })
+</script>
+<template>
+  <div>
+    <button @click="setCount">+{{count}}</button>
   </div>
 </template>
